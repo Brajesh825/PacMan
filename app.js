@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // move pacman
     function movePacman(e) {
         squares[pacmanCurrentIndex].classList.remove("pac-man");
-
         switch (e.keyCode) {
             case 37:
                 if (
@@ -85,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     !squares[pacmanCurrentIndex - 1].classList.contains("ghost-lair")
                 )
                     pacmanCurrentIndex -= 1;
-
                 // check if pacman is in the left exit
                 if ((pacmanCurrentIndex - 1) === 363) {
                     pacmanCurrentIndex = 391;
@@ -106,12 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     !squares[pacmanCurrentIndex + 1].classList.contains("ghost-lair")
                 )
                     pacmanCurrentIndex += 1;
-
                 // check if pacman is in the right exit
                 if (pacmanCurrentIndex + 1 === 392) {
                     pacmanCurrentIndex = 364;
                 }
-
                 break;
             case 40:
                 if (
@@ -123,10 +119,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
         }
         squares[pacmanCurrentIndex].classList.add("pac-man");
-        // pacdot eaten()
+        pacDotEaten();
         // powerPelletEaten()
         // checkForGameOver()
         // checkForMin()
     }
     document.addEventListener("keyup", movePacman);
+
+    function pacDotEaten() {
+        if (squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
+            score++;
+            scoreDisplay.innerHTML = score;
+            squares[pacmanCurrentIndex].classList.remove('pac-dot');
+
+        }
+    }
+
+    class Ghost {
+
+    }
+
+
 });
